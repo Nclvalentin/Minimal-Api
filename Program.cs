@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddScoped<IAdministradorServico, AdministradorServico>();
 
 builder.Services.AddDbContext<DbContexto>(Options =>
@@ -18,6 +21,7 @@ builder.Services.AddDbContext<DbContexto>(Options =>
 });
 
 var app = builder.Build();
+
 
 
 app.MapGet("/", () => "Hello World!");
@@ -34,7 +38,8 @@ app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministradorServico admin
     }
 });
 
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
 
