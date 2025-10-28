@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 var key = builder.Configuration.GetSection("Jwt").ToString();
 if (string.IsNullOrEmpty(key)) key = "123456";
 
